@@ -1,20 +1,29 @@
 """
 Creates most of the files necessary for clangen simulator.
-Only runs properly in the clangen-lite directory.
 """
 
+import argparse
 import subprocess
 from pathlib import Path
 import shutil
 import zipfile
 
-subprocess.run(["hatch", "build", "-t", "wheel"], check=True)
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("clangen", help="Directory of clangen-lite")
+    parser.add_argument("dist", help="Directory to place output files")
+    args = parser.parse_args()
 
-with zipfile.ZipFile("dist/res.zip", "w") as z:
-    for p in Path(".").glob("resources/**/*.json"):
-        z.write(p, p)
+    clangen_repo = Path(args.clangen)
+    output = Path(args.dist)
 
-    for p in Path(".").glob("sprites/**/*.json"):
-        z.write(p, p)
+    subprocess.run(["hatch", "build", "-t", "wheel"], cwd=clangen_repo, check=True)
 
-shutil.copytree("sprites", "dist/sprites", dirs_exist_ok=True)
+    with zipfile.ZipFile(output / "res.zip", "w") as z:
+        for p in Path(clangen_repo).glob("resources/**/*.json"):
+            z.write(p, p)
+
+        for p in Path(clangen_repo).glob("sprites/**/*.json"):
+            z.write(p, p)
+
+    shutil.copytree(clangen_repo / "sprites", output / "sprites", dirs_exist_ok=True)
