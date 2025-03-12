@@ -34,13 +34,6 @@ def get_version_info():
             version_number = version_ini.get("DEFAULT", "version_number")
             release_channel = version_ini.get("DEFAULT", "release_channel")
             upstream = version_ini.get("DEFAULT", "upstream")
-        else:
-            try:
-                version_number = subprocess.check_output(
-                    ['git', 'rev-parse', 'HEAD']).decode('ascii').strip()
-                git_installed = True
-            except:
-                logger.exception("Git CLI invocation failed")
 
         if "--launched-through-itch" in sys.argv or "LAUNCHED_THROUGH_ITCH" in os.environ:
             is_itch = True
