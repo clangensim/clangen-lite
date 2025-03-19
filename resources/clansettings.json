@@ -43,7 +43,7 @@
         "fading": [
             "Allow dead cats to fade away",
             "After 202 moons, dead cats will be unloaded, and saved separately. No family relations will be lost.",
-            true
+            false
         ],
         "save_faded_copy": [
             "Save a complete copy of faded cats information",
