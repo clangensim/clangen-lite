@@ -20,10 +20,11 @@ if __name__ == "__main__":
     subprocess.run(["hatch", "build", "-t", "wheel"], cwd=clangen_repo, check=True)
 
     with zipfile.ZipFile(output / "res.zip", "w") as z:
-        for p in Path(clangen_repo).glob("resources/**/*.json"):
-            z.write(p, p)
+        for p in clangen_repo.glob("resources/**/*.json"):
+            z.write(p, p.relative_to(clangen_repo))
 
         for p in Path(clangen_repo).glob("sprites/**/*.json"):
-            z.write(p, p)
+            z.write(p, p.relative_to(clangen_repo))
+        print(z.namelist())
 
     shutil.copytree(clangen_repo / "sprites", output / "sprites", dirs_exist_ok=True)
