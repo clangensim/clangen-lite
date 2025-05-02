@@ -17,7 +17,8 @@ if __name__ == "__main__":
     clangen_repo = Path(args.clangen)
     output = Path(args.dist)
 
-    subprocess.run(["hatch", "build", "-t", "wheel"], cwd=clangen_repo, check=True)
+    subprocess.run(["hatch", "build", "-t", "wheel", str(output.absolute())],
+                   cwd=clangen_repo, check=True)
 
     with zipfile.ZipFile(output / "res.zip", "w") as z:
         for p in clangen_repo.glob("resources/**/*.json"):
