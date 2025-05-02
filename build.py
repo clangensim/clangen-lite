@@ -25,6 +25,5 @@ if __name__ == "__main__":
 
         for p in Path(clangen_repo).glob("sprites/**/*.json"):
             z.write(p, p.relative_to(clangen_repo))
-        print(z.namelist())
 
     shutil.copytree(clangen_repo / "sprites", output / "sprites", dirs_exist_ok=True)
