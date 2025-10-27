@@ -196,7 +196,7 @@ class PatrolOutcome():
         
         print("PATROL END -----------------------------------------------------")
         
-        return (processed_text, " ".join(results))
+        return (processed_text, " ".join(results), self.outcome_art)
     
     def _allowed_stat_cat_specfic(self, kitty:Cat, patrol:'Patrol', allowed_specfic) -> bool:
         """Helper that handled specfic stat cat requriments. """
