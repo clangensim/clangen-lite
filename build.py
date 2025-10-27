@@ -28,3 +28,5 @@ if __name__ == "__main__":
             z.write(p, p.relative_to(clangen_repo))
 
     shutil.copytree(clangen_repo / "sprites", output / "sprites", dirs_exist_ok=True)
+    shutil.copytree(clangen_repo / "resources/images/patrol_art",
+                    output / "patrol_art", dirs_exist_ok=True)
