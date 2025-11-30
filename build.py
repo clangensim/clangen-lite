@@ -30,3 +30,6 @@ if __name__ == "__main__":
     shutil.copytree(clangen_repo / "sprites", output / "sprites", dirs_exist_ok=True)
     shutil.copytree(clangen_repo / "resources/images/patrol_art",
                     output / "patrol_art", dirs_exist_ok=True)
+    
+    shutil.copytree(clangen_repo / "resources/images/camp_bg",
+                    output / "camp_bg", dirs_exist_ok=True)
