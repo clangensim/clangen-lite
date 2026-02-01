@@ -116,7 +116,9 @@ class Clan():
         self.game_mode = game_mode
         self.pregnancy_data = {}
         self.inheritance = {}
-        
+
+        self.all_clans = []
+
         # Init Settings
         self.clan_settings = {}
         self.setting_lists = {}
