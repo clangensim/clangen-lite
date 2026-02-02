@@ -753,10 +753,22 @@ class Clan():
             game.clan.instructor.dead = True
             game.clan.add_cat(game.clan.instructor)
 
+        other_clan_names = clan_data["other_clans_names"].split(",")
+        other_clans_relations = clan_data["other_clans_relations"].split(",")
+        other_clan_temperament = clan_data["other_clan_temperament"].split(",")
+        if len(other_clan_names) > 5:
+            first_clan = other_clan_names[0]
+            try:
+                end_index = other_clan_names[1:].index(first_clan)
+                other_clan_names = other_clan_names[0:end_index]
+                other_clans_relations = other_clans_relations[0:end_index]
+                other_clan_temperament = other_clan_temperament[0:end_index]
+            except IndexError:
+                pass
         for name, relation, temper in zip(
-                clan_data["other_clans_names"].split(","),
-                clan_data["other_clans_relations"].split(","),
-                clan_data["other_clan_temperament"].split(",")):
+                other_clan_names,
+                other_clans_relations,
+                other_clan_temperament):
             game.clan.all_clans.append(OtherClan(name, int(relation), temper))
 
         for cat in clan_data["clan_cats"].split(","):
