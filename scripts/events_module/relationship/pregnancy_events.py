@@ -734,7 +734,8 @@ class Pregnancy_Events():
                 if cat_id == kit.ID:
                     continue
                 the_cat = Cat.all_cats.get(cat_id)
-                if the_cat.dead or the_cat.outside:
+                # need "if not the_cat" bc sometimes cats that don't exist are in the clan_cats list?
+                if not the_cat or the_cat.dead or the_cat.outside:
                     continue
                 if the_cat.ID in kit.get_parents():
                     y = random.randrange(0, 20)
