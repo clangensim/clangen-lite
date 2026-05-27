@@ -2,7 +2,6 @@ import logging
 import os
 import subprocess
 import sys
-from importlib.util import find_spec
 from configparser import ConfigParser
 logger = logging.getLogger(__name__)
 
@@ -22,7 +21,7 @@ def get_version_info():
         is_thonny = False
         git_installed = False
 
-        if not getattr(sys, 'frozen', False):
+        if not getattr(sys, "frozen", False):
             is_source_build = True
 
         if find_spec("thonny") is not None:
@@ -34,12 +33,33 @@ def get_version_info():
             version_number = version_ini.get("DEFAULT", "version_number")
             release_channel = version_ini.get("DEFAULT", "release_channel")
             upstream = version_ini.get("DEFAULT", "upstream")
+        else:
+            try:
+                version_number = (
+                    subprocess.check_output(["git", "rev-parse", "HEAD"])
+                    .decode("ascii")
+                    .strip()
+                )
+                git_installed = True
+            except:
+                logger.exception("Git CLI invocation failed")
 
-        if "--launched-through-itch" in sys.argv or "LAUNCHED_THROUGH_ITCH" in os.environ:
+        if (
+            "--launched-through-itch" in sys.argv
+            or "LAUNCHED_THROUGH_ITCH" in os.environ
+        ):
             is_itch = True
 
         get_version_info.instance = VersionInfo(
-            is_source_build, release_channel, version_number, upstream, is_itch, is_sandboxed, git_installed, is_thonny)
+            is_source_build,
+            release_channel,
+            version_number,
+            upstream,
+            is_itch,
+            is_sandboxed,
+            git_installed,
+            is_thonny,
+        )
     return get_version_info.instance
 
 
@@ -47,7 +67,17 @@ get_version_info.instance = None
 
 
 class VersionInfo:
-    def __init__(self, is_source_build: bool, release_channel: str, version_number: str, upstream: str, is_itch: bool, is_sandboxed: bool, git_installed: bool, is_thonny: bool):
+    def __init__(
+        self,
+        is_source_build: bool,
+        release_channel: str,
+        version_number: str,
+        upstream: str,
+        is_itch: bool,
+        is_sandboxed: bool,
+        git_installed: bool,
+        is_thonny: bool,
+    ):
         self.is_source_build = is_source_build
         self.release_channel = release_channel
         self.version_number = version_number
