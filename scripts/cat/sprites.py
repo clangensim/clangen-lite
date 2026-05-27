@@ -30,6 +30,7 @@ class Sprites:
         self.blank_sprite = None
 
         self.load_tints()
+        self.load_symbols()
 
     def load_tints(self):
         try:
@@ -103,14 +104,6 @@ class Sprites:
                         x_pos += -1
 
                     self.clan_symbols.append(f"symbol{symbol.upper()}{variant_index}")
-                    self.make_group(
-                        "symbols",
-                        (x_pos, y_pos),
-                        f"symbol{symbol.upper()}{variant_index}",
-                        sprites_x=1,
-                        sprites_y=1,
-                        no_index=True,
-                    )
 
             y_pos += 1
 
