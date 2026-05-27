@@ -281,7 +281,7 @@ class PatrolOutcome:
 
         print("PATROL END -----------------------------------------------------")
 
-        return processed_text, " ".join(results), self.get_outcome_art()
+        return processed_text, " ".join(results), self.outcome_art
 
     def _allowed_stat_cat_specific(
         self, kitty: Cat, patrol: "Patrol", allowed_specific
