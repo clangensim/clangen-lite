@@ -216,7 +216,7 @@ class Game:
 
         # If write_data is not a string,
         if type(write_data) is not str:
-            _data = json.dumps(write_data, indent=4)
+            _data = ujson.dumps(write_data, indent=4)
         else:
             _data = write_data
 
@@ -348,11 +348,7 @@ class Game:
         try:
             game.safe_save(get_save_dir() + "/settings.json", self.settings)
         except RuntimeError:
-            from scripts.game_structure.windows import SaveError
-
-            SaveError(traceback.format_exc())
-            if currentscreen is not None:
-                currentscreen.change_screen("start screen")
+            raise RuntimeError
 
     def load_settings(self):
         """Load settings that user has saved from previous use"""

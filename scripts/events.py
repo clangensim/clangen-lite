@@ -30,7 +30,6 @@ from scripts.events_module.outsider_events import OutsiderEvents
 from scripts.events_module.relation_events import Relation_Events
 from scripts.events_module.relationship.pregnancy_events import Pregnancy_Events
 from scripts.game_structure.game_essentials import game
-from scripts.game_structure.windows import SaveError
 from scripts.patrol.patrol import Patrol
 from scripts.utility import (
     change_clan_relations,

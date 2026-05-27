@@ -2,7 +2,7 @@
 # -*- coding: ascii -*-
 import random
 
-import json as ujson
+import json
 
 from scripts.game_structure.game_essentials import game
 from scripts.utility import (
@@ -26,11 +26,11 @@ class GenerateEvents:
     with open(
         f"resources/dicts/conditions/event_injuries_distribution.json", "r"
     ) as read_file:
-        INJURY_DISTRIBUTION = ujson.loads(read_file.read())
+        INJURY_DISTRIBUTION = json.loads(read_file.read())
 
     INJURIES = None
     with open(f"resources/dicts/conditions/injuries.json", "r") as read_file:
-        INJURIES = ujson.loads(read_file.read())
+        INJURIES = json.loads(read_file.read())
 
     @staticmethod
     def get_short_event_dicts(file_path):
@@ -81,7 +81,7 @@ class GenerateEvents:
         try:
             file_path = f"{resource_directory}/leader_den/{'success' if success else 'fail'}/{event_type}.json"
             with open(file_path, "r") as read_file:
-                events = ujson.loads(read_file.read())
+                events = json.loads(read_file.read())
         except:
             events = None
             print(

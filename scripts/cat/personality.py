@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from random import randint, choice, choices
 
-import ujson
+import json as ujson
 
 
 class Personality:

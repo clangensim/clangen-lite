@@ -2,6 +2,7 @@ import logging
 import os
 import subprocess
 import sys
+from importlib.util import find_spec
 from configparser import ConfigParser
 logger = logging.getLogger(__name__)
 
