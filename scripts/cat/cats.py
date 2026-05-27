@@ -30,15 +30,12 @@ from scripts.conditions import (
 )
 from scripts.event_class import Single_Event
 from scripts.events_module.generate_events import GenerateEvents
-from scripts.game_structure import image_cache
 from scripts.game_structure.game_essentials import game
-from scripts.game_structure.screen_settings import screen
 from scripts.housekeeping.datadir import get_save_dir
 from scripts.utility import (
     get_alive_status_cats,
     get_personality_compatibility,
     event_text_adjust,
-    update_sprite,
     leader_ceremony_text_adjust,
 )
 
@@ -3344,16 +3341,6 @@ class Cat:
                 self.age = "senior"
         except AttributeError:
             print(f"ERROR: cat has no age attribute! Cat ID: {self.ID}")
-
-    @property
-    def sprite(self):
-        # Update the sprite
-        update_sprite(self)
-        return self._sprite
-
-    @sprite.setter
-    def sprite(self, new_sprite):
-        self._sprite = new_sprite
 
     # ---------------------------------------------------------------------------- #
     #                                  other                                       #
