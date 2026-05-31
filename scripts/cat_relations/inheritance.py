@@ -330,7 +330,7 @@ class Inheritance:
         for parent_id, value in self.parents.items():
             parent_cat = self.cat.fetch_cat(parent_id)
             grandparents = self.get_parents(parent_cat)
-            if not grandparents:
+            if not grandparents or not parent_cat:
                 continue
             for grand_id in grandparents:
                 if grand_id in self.parents.keys():
